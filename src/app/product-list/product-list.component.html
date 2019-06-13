@@ -1,0 +1,34 @@
+<p >
+  product-list works!
+</p>
+<div>
+  <span>ID </span> <span>  Nombre</span>
+</div>
+
+<div *ngFor="let user of list" >
+  <ng-template [ngIf]="isShow(user)">
+      <span>{{user.id}} </span> <span>  {{user.name}}</span>
+
+
+  </ng-template>
+
+  <div style="margin-bottom: 10px;" *ngIf="!isShow(user)">
+      Esto en la descripción del usuario: {{user.id}}
+    </div>
+
+    <div style="margin-bottom: 10px;"
+    class="hola"
+      [ngClass]="{
+        'is-active': user.id === 3,
+        'text-red': user.id === 5
+      }"
+    [attr.id]="user.id" [hidden]="!isShow(user)">
+        Esto en la descripción del usuario no eliminada: {{user.id}}
+      </div>
+
+</div>
+<!-- <ng-template [ngIf]="">
+  <p>
+    producto fafa
+  </p>
+</ng-template> -->

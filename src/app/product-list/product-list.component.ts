@@ -1,4 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { IsodatePipe } from '../isodate.pipe';
+import { ListService } from '../list.service';
 
 @Component({
   selector: 'app-product-list',
@@ -11,18 +13,15 @@ export class ProductListComponent implements OnInit, OnDestroy {
   mostrar = true;
   //list = [];
   //list: any[] = []
-  list: {name: string, id: number}[] = [];
+  list: {name: string, id: number, date: Date}[] = [];
 
-  constructor() { }
+  constructor(private isoDate: IsodatePipe, private listService: ListService) {
+
+  }
 
   ngOnInit() {
     //Se ejecuta cuando se ha inicializado los componentes, pero sin haber renderizado completamente
-    for(let i = 0; i < 10; i++){
-      this.list .push({
-        name: 'Rafa ' + i,
-        id: i,
-      })
-    }
+    this.list = this.listService.getList();
 
   }
 
@@ -34,4 +33,13 @@ export class ProductListComponent implements OnInit, OnDestroy {
     return item.id %2;
   }
 
+  transformDate(date: Date){
+    console.log('pase por aqui');
+    return this.isoDate.transform(date);
+  }
+
+  order(param){
+    //this.list = this.list.sort( compareFn: (prev, next) => prev[param] - next[next]);
+    console.log(param);
+  }
 }

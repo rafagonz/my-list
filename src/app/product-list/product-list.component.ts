@@ -10,6 +10,7 @@ import { ListService } from '../list.service';
 export class ProductListComponent implements OnInit, OnDestroy {
 
 
+  search = 'Hola';
   mostrar = true;
   //list = [];
   //list: any[] = []
@@ -40,5 +41,14 @@ export class ProductListComponent implements OnInit, OnDestroy {
   order(param){
     //this.list = this.list.sort( compareFn: (prev, next) => prev[param] - next[next]);
     console.log(param);
+  }
+
+  searchChange(valor){
+    this.search = valor;
+    console.log(valor);
+  }
+
+  onSearch(){
+    console.log(this.search);
   }
 }

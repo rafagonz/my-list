@@ -34,7 +34,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   transformDate(date: Date){
-    console.log('pase por aqui');
     return this.isoDate.transform(date);
   }
 

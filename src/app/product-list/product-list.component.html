@@ -7,7 +7,7 @@
   <div class="col-6">
     <div class="form-group">
       <label for="search">Buscador</label>
-      <input type="text" [ngModel]="search" (ngModelChange)="searchChange($event)" class="form-control" id="search">
+      <input type="text" [(ngModel)]="search" class="form-control" id="search">
     </div>
   </div>
 </div>
@@ -26,7 +26,6 @@
           <th scope="col">descripción</th>
           <th scope="col">Fecha</th>
           <th scope="col">Fecha 2</th>
-          <th scope="col">Fecha 3</th>
         </tr>
       </thead>
       <tbody>
@@ -37,7 +36,6 @@
               <span
                 appColorStatus
                 [item] = "product"
-                *ngIf="isShow(product)"
                 [ngClass]="{
                              'text-warning': product.id === 3,
                              'text-danger': product.id === 5
@@ -47,7 +45,6 @@
             </td>
             <td>{{product.date | isodate}}</td>
             <td>{{product.date | date:'dd/MM/yyyy': 'UTC'}}</td>
-            <td>{{transformDate(product.date)}}</td>
         </tr>
       </tbody>
     </table>

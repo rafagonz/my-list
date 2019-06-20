@@ -14,6 +14,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   mostrar = true;
   //list = [];
   //list: any[] = []
+  original: {name: string, id: number, date: Date}[] = [];
   list: {name: string, id: number, date: Date}[] = [];
 
   constructor(private isoDate: IsodatePipe, private listService: ListService) {
@@ -22,8 +23,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     //Se ejecuta cuando se ha inicializado los componentes, pero sin haber renderizado completamente
-    this.list = this.listService.getList();
-
+    this.original = this.listService.getList();
+    this.list = JSON.parse(JSON.stringify(this.original));
   }
 
   ngOnDestroy(): void {
@@ -49,6 +50,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   onSearch(){
+    this.list = this.original.filter( (obj)=> {
+      return obj.name.startsWith(this.search);
+    });
     console.log(this.search);
   }
 }
